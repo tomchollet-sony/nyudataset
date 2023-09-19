@@ -26,7 +26,8 @@ print(depths.shape)
 print(depths.max())
 print(depths.min())
  
-depths = depths / max * 255
+# depths = depths / max * 255 
+depths = depths * 4000
 depths = depths.transpose((0,2,1))
  
 print(depths.max())
@@ -35,7 +36,7 @@ print(len(depths))
 for i in range(len(depths)):
     print(str(i) + '.png')
     #im = Image.fromarray(np.flipud(img_data))
-    depths_img= Image.fromarray(np.uint8(depths[i]))
+    depths_img= Image.fromarray(np.uint32(depths[i]))
     depths_img = depths_img.transpose(Image.FLIP_LEFT_RIGHT)
     iconpath=depth_path_converted + str(i)+'.png'
     depths_img.save(iconpath, 'PNG', optimize=True)
